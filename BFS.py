@@ -1,40 +1,38 @@
 from collections import deque
-from Grafo import Grafo
+from Graph import Graph
 
-nodos = ['car', 'cat', 'cab', 'mat', 'bat', 'bab']
-vecinos = [['cab', 'cat'], ['mat', 'bat'], ['cat', 'bab'], ['bat'], [], ['bat']]
+nodes = ['car', 'cat', 'cab', 'mat', 'bat', 'bab']
+neighbors = [['cab', 'cat'], ['mat', 'bat'], ['cat', 'bab'], ['bat'], [], ['bat']]
 
-grafo = Grafo()
-grafo.create_graph(nodos, vecinos)
+graph = Graph()
+graph.create_graph(nodes, neighbors)
 
 
-def bfs_tree(grafo, inicio):
+def bfs_tree(graph: Graph, start):
     queue = deque()
-    queue += [grafo.nodo[inicio]]
+    queue += [graph.nodes[start]]
     while queue:
-        nodo = queue.popleft()
-        nodo.analizado = True
-        for neighbor in nodo.vecinos:
-            if not neighbor.analizado:
+        node = queue.popleft()
+        node.is_analized = True
+        for neighbor in node.neighbors:
+            if not neighbor.is_analized:
                 queue.append(neighbor)
-                neighbor.padre = nodo
-                neighbor.analizado = True
+                neighbor.parent = node
+                neighbor.is_analized = True
 
-def obtener_ruta(grafo, buscado):
+def get_path(graph, search_node):
     path = []
-    nodo_actual = grafo.nodo.get(buscado)
+    node = graph.nodes.get(search_node)
 
-    if nodo_actual is None:
-        print("El nodo buscado no existe en el grafo.")
+    if node is None:
+        print("El nodo buscado no existe en el graph.")
         return
-
-    while nodo_actual is not None:
-        path.append(nodo_actual.id)
-        nodo_actual = nodo_actual.padre
-
+    while node is not None:
+        path.append(node.id)
+        node = node.parent
     path.reverse()
     print('El path al nodo es {}'.format(path))
 
 
-bfs_tree(grafo, 'car')
-obtener_ruta(grafo, 'bat')
+bfs_tree(graph, 'car')
+get_path(graph, 'bat')

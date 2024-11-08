@@ -1,34 +1,37 @@
-from Grafo import Grafo
+from Graph import Graph
+from Node import Node
 
-nodos = ['car', 'cat', 'cab', 'mat', 'bat', 'bab']
-vecinos = [['mat','cat', 'cab'], ['mat', 'bat'], ['cat', 'bab'], ['bat'], [], ['bat']]
+nodes = ['car', 'cat', 'cab', 'mat', 'bat', 'bab']
+neighbors = [['cab', 'cat'], ['mat', 'bat'], ['cat', 'bab'], ['bat'], [], ['bat']]
 
-grafo = Grafo()
-grafo.create_graph(nodos, vecinos)
+graph = Graph()
+graph.create_graph(nodes, neighbors)
 
 
-def ruta_profunda(grafo: Grafo, inicio, fin = None):
-    max_profundidad = 0
-    ruta_profunda = []
+def get_deep_path(graph: Graph, start, finish = None):
+    max_deep = 0
+    deep_path = []
     path = []
-    nodo_inicio = grafo.nodo.get(inicio)
+    start_node = graph.nodes.get(start)
 
-    def dfs(nodo_inicio, path, fin = None):
-        nonlocal max_profundidad, ruta_profunda
-        path.append(nodo_inicio.id)
+    def dfs(start_node: Node, path, finish = None):
+        nonlocal max_deep, deep_path
+        path.append(start_node.id)
 
-        if len(path) > max_profundidad and (fin is None or path[-1] == fin):
-            max_profundidad = len(path)
-            ruta_profunda = path[:]
+        if len(path) > max_deep and (finish is None or path[-1] == finish):
+            max_deep = len(path)
+            deep_path = path[:]
 
-        for vecino in nodo_inicio.vecinos:
-            if vecino.id not in path and not vecino.analizado:
-                dfs(vecino,path, fin)
+        for neighbor in start_node.neighbors:
+            if neighbor.id not in path and not neighbor.is_analized:
+                dfs(neighbor,path, finish)
 
         path.pop()
-    dfs(nodo_inicio, path, fin)
 
-    print(max_profundidad)
-    print(ruta_profunda)
+    dfs(start_node, path, finish)
 
-ruta_profunda(grafo, 'car', 'mat')
+    return deep_path, max_deep
+
+deep_path, max_deep = get_deep_path(graph, 'car', 'mat')
+
+print('The deepest path is {}'.format(deep_path))
