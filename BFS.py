@@ -20,10 +20,21 @@ def bfs_tree(grafo, inicio):
                 neighbor.padre = nodo
                 neighbor.analizado = True
 
-bfs_tree(grafo, 'car')
+def obtener_ruta(grafo, buscado):
+    path = []
+    nodo_actual = grafo.nodo.get(buscado)
 
-for nodo_id, nodo in grafo.nodo.items():
-    if nodo.padre:
-        print(f"Nodo: {nodo.id}, Padre: {nodo.padre.id}")
-    else:
-        print(f"Nodo: {nodo.id}, Padre: None")
+    if nodo_actual is None:
+        print("El nodo buscado no existe en el grafo.")
+        return
+
+    while nodo_actual is not None:
+        path.append(nodo_actual.id)
+        nodo_actual = nodo_actual.padre
+
+    path.reverse()
+    print('El path al nodo es {}'.format(path))
+
+
+bfs_tree(grafo, 'car')
+obtener_ruta(grafo, 'bat')
