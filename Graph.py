@@ -22,5 +22,10 @@ class Graph:
                 node = self.nodes[id_list[i]]
                 for neighbor in neighbors:
                     node.neighbors.append(self.nodes[neighbor])
+            print('Graph created')
         else:
             print('Lists do not match in size')
+
+    def reset_graph(self):
+        for node in self.nodes.values():
+            node.is_analized = False

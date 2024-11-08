@@ -1,14 +1,11 @@
 from collections import deque
 from Graph import Graph
 
-nodes = ['car', 'cat', 'cab', 'mat', 'bat', 'bab']
-neighbors = [['cab', 'cat'], ['mat', 'bat'], ['cat', 'bab'], ['bat'], [], ['bat']]
 
-graph = Graph()
-graph.create_graph(nodes, neighbors)
 
 
 def bfs_tree(graph: Graph, start):
+    graph.reset_graph()
     queue = deque()
     queue += [graph.nodes[start]]
     while queue:
@@ -31,8 +28,6 @@ def get_path(graph, search_node):
         path.append(node.id)
         node = node.parent
     path.reverse()
-    print('El path al nodo es {}'.format(path))
+    return path
 
 
-bfs_tree(graph, 'car')
-get_path(graph, 'bat')
