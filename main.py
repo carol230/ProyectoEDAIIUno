@@ -4,8 +4,11 @@ from Graph import Graph
 
 
 def create_graph():
-    nodes = ['car', 'cat', 'cab', 'mat', 'bat', 'bab']
-    neighbors = [['cab', 'cat'], ['mat', 'bat'], ['cat', 'bab'], ['bat'], [], ['bat']]
+    nodes = ['Riocentro', 'TroleBus-Laures', 'Ecovia-Riococa', 'Alborada-Shyris y Tomas de Berlanga', 'Metro-Jipijapa', 'Ecovia-Colegio24Mayo', 'Alborada-ShyrisYNacionesUnidas', 'Metro-Inaquito', 'Metro-LaCarolina', 'Ecovia-CasaCultura', 'Alborada-12OctubreTarqui', 'Metro-LaPradera', 'Metro-ElEjido', 'Ecovia-MarinCentral', 'Metro-UCE', 'Metro-Alameda', 'Metro-SanFrancisco','CentroHistorico']
+    
+
+    neighbors = [['TroleBus-Laures', 'Ecovia-Riococa', 'Alborada-Shyris y Tomas de Berlanga'], ['Metro-Jipijapa', 'Ecovia-Riococa'], ['TroleBus-Laures', 'Ecovia-Colegio24Mayo'], ['Alborada-ShyrisYNacionesUnidas', 'Metro-Jipijapa'], ['Metro-Inaquito', 'Alborada-Shyris y Tomas de Berlanga'], ['Metro-LaCarolina', 'Ecovia-CasaCultura'], ['Metro-Inaquito', 'Alborada-12OctubreTarqui'], ['Metro-LaCarolina', 'Alborada-ShyrisYNacionesUnidas'], ['Metro-LaPradera'], ['Metro-ElEjido', 'Alborada-12OctubreTarqui', 'Ecovia-MarinCentral'], ['Ecovia-CasaCultura', 'Metro-ElEjido', 'Ecovia-MarinCentral'], ['Metro-UCE'], ['Metro-Alameda', 'Alborada-12OctubreTarqui', 'Ecovia-CasaCultura'], ['CentroHistorico'], ['Metro-ElEjido'], ['Metro-SanFrancisco'], ['CentroHistorico'],[]]
+
 
     graph = Graph()
     graph.create_graph(nodes, neighbors)
